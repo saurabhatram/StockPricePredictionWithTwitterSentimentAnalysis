@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>STOCK LIST</title>
+</head>
+<body>
+<p>Add or Remove stocks to your wishlist:</p>
+
+<label for="stock">Choose a stock :</label>
+
+<form action="/editwishlist.html" method="POST">
+<SELECT id="stock" name="stock" >
+{% for s in stocklist %}
+	<OPTION value={{s}}>{{s}}</option>
+{% endfor %}
+</SELECT>
+<input type="submit" name="update_button" value="Update">
+<input type="submit" name="delete_button" value="Delete">
+</form>
+
+<p>Your wishlist stocks</p>
+<SELECT id="stock" name="stock" >
+{% for s in wishlist %}
+	<OPTION value={{s}}>{{s}}</option>
+{% endfor %}
+</SELECT>
+<br>
+<br>
+<p>Move to middlepage</p><br>
+<form action="middlepage1.html">
+    <input type="submit" value="middlepage1" />
+</form>
+</body>
+</html>

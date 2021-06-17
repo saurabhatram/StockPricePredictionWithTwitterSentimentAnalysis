@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<body>
+<canvas id="myChart" style="width:100%;max-width:900px"></canvas>
+
+<script>
+var xValues = {{labels|safe}};
+var yValues = {{values|safe}};
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      pointRadius: 2,
+      pointHoverRadius: 10,
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.3)",
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    scales: {
+      yAxes: [{ticks: {min: {{minvalue}}-1000, max:{{maxvalue}}+1000 }}],
+       x: {
+                type: 'timeseries',
+          }
+    }
+  }
+});
+</script>
+<p>The Predicted price for {{stock_name}} stock for the next day is {{value}}</p>
+<p><b>Sentiment Analysis of {{stock_name}}</b></p>
+<p>Positive : {{positive}}</p>
+<p>Negative : {{negative}}</p>
+<p>Neutral : {{neutral}}</p>
+<br>
+<p>Twitter Polarity : {{tw_pol}}</p>
+</body>
+</html>
+
+
