@@ -12,7 +12,7 @@ from datetime import date
 from nsepy import get_history
 from datetime import date
 import h5py
-
+import yfinance as yf
 from tensorflow.keras.models import load_model
 from sklearn.externals import joblib
 
@@ -168,10 +168,17 @@ def choicelist2():
         
 def historyandprediction(stock_name):
         print("inside historyandprediction")
+        
         from datetime import datetime,timedelta
         LastDay= datetime.combine(date.today(), datetime.min.time())
         StartDay = LastDay - timedelta(days=331)
+        
+        '''
         stock = web.DataReader(stock_name+".ns","yahoo",StartDay,LastDay)        
+        
+        '''
+        stock = yf.download(tickers=stock_name+".ns", period="2y", interval="1d",auto_adjust=True)
+        
         stock.reset_index(inplace=True,drop=False)
         res = stock.copy(deep=True)
         
@@ -179,9 +186,9 @@ def historyandprediction(stock_name):
         sc= joblib.load(stock_name+'.save')
         
         
-
+        
         #print(stock)
-        stock = stock.drop(['High','Low','Adj Close'],axis=1)
+        stock = stock.drop(['High','Low'],axis=1)
         lastDayWindow=stock.drop(['Date'],axis=1)
         numerical = ['Open', 'Close', 'Volume']
         lastDayWindow[numerical] = sc.fit_transform(lastDayWindow[numerical])
