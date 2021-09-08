@@ -1,6 +1,5 @@
 # StockPricePredictionWithTwitterSentimentAnalysis
 
-Stock Price Prediction and Sentiment Analysis
 Built a web-based platform where users can see the predicted closing price and perform sentiment analysis for their desired NIFTY-50 stocks using the LSTM Machine Learning technique. Users can also add and delete the stocks they are interested in on their wishlist which will be saved as per user login.
 
 Users can see the data analysis of the previous stock data through the dashboards and the graphs provided in the platform itself.
